@@ -68,9 +68,13 @@ you want to use another port.
 java -jar grpc-swagger-web/target/grpc-swagger.jar --server.port=8888
 ```
 
+### Run DynamoDB locally
+`docker run -p 8000:8000 dwmkerr/dynamodb -sharedDb`
+
 ### Other parameters
 - `--enable.list.service=(true/false)` - Weather enable list registered services through listServices api. 
 - `--service.expired.seconds=expiredSeconds` - If `expiredSeconds` is greater than 0, the registered service will be expired after `expiredSeconds` if no access.
+- `--service.storage=(LOCAL/DYNAMO_DB)` - Pick the storage for the service configs. Defaults to `LOCAL`.
 
 ## How to use it
 1. Run gRPC-swagger, referring to [Build and Run](#build-and-run) 

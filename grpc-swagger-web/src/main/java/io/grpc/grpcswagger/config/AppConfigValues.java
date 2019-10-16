@@ -19,4 +19,7 @@ public class AppConfigValues {
     
     @Value("#{${service.expired.seconds:0}}")
     private int serviceExpiredSeconds;
+
+    @Value("${service.storage}")
+    private StorageEnum serviceStorage;
 }

@@ -25,4 +25,8 @@ public class AppConfig {
     public static int serviceExpiredSeconds() {
         return appConfigValues.getServiceExpiredSeconds();
     }
+
+    public static StorageEnum getServiceStorage() {
+        return appConfigValues.getServiceStorage();
+    }
 }

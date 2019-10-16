@@ -1,7 +1,6 @@
 package io.grpc.grpcswagger.controller;
 
 import static io.grpc.CallOptions.DEFAULT;
-import static io.grpc.grpcswagger.manager.ServiceConfigManager.getServiceConfigs;
 import static io.grpc.grpcswagger.model.Result.error;
 import static io.grpc.grpcswagger.utils.GrpcReflectionUtils.parseToMethodDefinition;
 import static io.grpc.grpcswagger.utils.ServiceRegisterUtils.getServiceNames;
@@ -60,6 +59,9 @@ public class GrpcController {
     @Autowired
     private DocumentService documentService;
 
+    @Autowired
+    private ServiceConfigManager serviceConfigManager;
+
     @PostConstruct
     public void init() {
         ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
@@ -83,7 +85,7 @@ public class GrpcController {
             payload = JSON.toJSONString(jsonObject);
         } else {
             String fullServiceName = methodDefinition.getFullServiceName();
-            endPoint = ServiceConfigManager.getEndPoint(fullServiceName);
+            endPoint = serviceConfigManager.getEndPoint(fullServiceName);
         }
         if (endPoint == null) {
             return Result.success("can't find target endpoint");
@@ -100,7 +102,7 @@ public class GrpcController {
         if (!AppConfig.enableListService()) {
             return Result.error("Not support this action.");
         }
-       return Result.success(getServiceConfigs());
+       return Result.success(serviceConfigManager.getServiceConfigs());
     }
 
     @RequestMapping("/register")
@@ -113,7 +115,7 @@ public class GrpcController {
         List<String> serviceNames = getServiceNames(fileDescriptorSets);
         List<ServiceConfig> serviceConfigs = serviceNames.stream()
                 .map(name -> new ServiceConfig(name, registerParam.getHostAndPortText()))
-                .peek(ServiceConfigManager::addServiceConfig)
+                .peek(serviceConfig -> serviceConfigManager.addServiceConfig(serviceConfig))
                 .collect(toList());
         return Result.success(serviceConfigs);
     }

@@ -15,7 +15,7 @@ public class DocumentRegistry {
         return INSTANCE;
     }
 
-    private final BaseStorage<String, SwaggerV2Documentation> storage = StorageUtils.newStorage();
+    private final BaseStorage<String, SwaggerV2Documentation> storage = StorageUtils.newLocalStorage();
 
     public void put(String serviceName, SwaggerV2Documentation swaggerV2Documentation) {
         storage.put(serviceName, swaggerV2Documentation);
