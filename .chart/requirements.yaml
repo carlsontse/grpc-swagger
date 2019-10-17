@@ -1,0 +1,4 @@
+dependencies:
+- name: app-service
+  version: 0.0.16
+  repository: "@public-helm-virtual"

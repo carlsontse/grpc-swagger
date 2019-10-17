@@ -1,0 +1,23 @@
+{
+  "methods": [
+    {
+      "type": "email",
+      "location": "EGTigerTeam@expedia.com",
+      "severity": [
+        "info",
+        "error",
+        "warn"
+      ]
+    },
+    {
+      "type": "slack",
+      "location": "#eg-tigerteam-github",
+      "severity" : [
+        "info",
+        "error",
+        "warn"
+      ]
+    }
+  ]
+}
+

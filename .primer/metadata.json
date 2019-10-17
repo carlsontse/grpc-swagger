@@ -1,0 +1,23 @@
+{
+  "name": "grpc-swagger",
+  "team": "EG Tiger Team",
+  "applicationStack": "bex-api",
+  "repoSource": "https://github.expedia.biz/EGgRPC/grpc-swagger",
+  "serviceTier": "Tier 3",
+  "extension": {},
+  "segments": ["egtiger"],
+  "privacyData": {
+    "complianceElements": [],
+    "storageLocations": [],
+    "services": {
+      "externalToExpedia": {
+        "downstream": [],
+        "upstream": []
+      },
+      "internalToExpedia": {
+        "downstream": [],
+        "upstream": []
+      }
+    }
+  }
+}

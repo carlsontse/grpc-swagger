@@ -1,0 +1,21 @@
+environment: test
+version: latest
+artifactoryHost: artylab.expedia.biz
+
+app-service:
+  namespace: default
+  deployment:
+    setSpringProfile: true
+    env:
+    replicas:
+      min: 1
+      max: 2
+
+  vpceIngress:
+    #TODO ask for the domain from the user
+    subDomain: default
+    enabled: false
+    class: traefik
+  http:
+    paths:
+      - /

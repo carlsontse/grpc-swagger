@@ -1,0 +1,70 @@
+{
+  "appName": "grpc-swagger",
+  "description": null,
+  "disabled": false,
+  "name": "grpc-swagger",
+  "owner": "ctse",
+  "steps": [
+    {
+      "action": {
+        "name": "primerBuildsJenkins"
+      },
+      "actionId": "grpc-swagger-master",
+      "description": null,
+      "disabled": false,
+      "ignoreResult": false,
+      "name": "Build_grpc-swagger-service",
+      "params": {
+        "token": "masterBuild"
+      },
+      "successChildren": [
+        "DeployTest_grpc-swagger_us-west-2"
+      ],
+      "triggerType": "automatic"
+    },
+    {
+      "action": {
+        "name": "ewedeployJenkins"
+      },
+      "actionId": "eg-platform-eks-deploy",
+      "description": null,
+      "disabled": false,
+      "ignoreResult": false,
+      "name": "DeployTest_grpc-swagger_us-west-2",
+      "params": {
+        "jobParameters": {
+          "SEGMENT": "egtiger",
+          "ROLE_NAME": "grpc-swagger",
+          "GITHUB_ORG": "EGPlatform",
+          "REGION": "us-west-2"
+        },
+        "token": "egPlatformEksDeploy"
+      },
+      "successChildren": [
+        "DeployProd_grpc-swagger_us-west-2"
+      ],
+      "triggerType": "automatic"
+    },
+    {
+      "action": {
+        "name": "ewedeployJenkins"
+      },
+      "actionId": "eg-platform-eks-deploy-prod",
+      "description": null,
+      "disabled": false,
+      "ignoreResult": false,
+      "name": "DeployProd_grpc-swagger_us-west-2",
+      "params": {
+        "jobParameters": {
+          "SEGMENT": "egtiger",
+          "ROLE_NAME": "grpc-swagger",
+          "GITHUB_ORG": "EGPlatform",
+          "REGION": "us-west-2"
+        },
+        "token": "egPlatformEksDeploy"
+      },
+      "triggerType": "manual"
+    }
+  ],
+  "team": "EG Tiger Team"
+}

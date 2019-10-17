@@ -1,0 +1,5 @@
+environment: prod
+version: latest
+artifactoryHost: artyprod.expedia.biz
+namespace: lodging
+region: us-west-2
